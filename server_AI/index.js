@@ -11,7 +11,11 @@ console.log("Is HF API Key loaded?", process.env.HF_API_KEY ? 'Yes' : 'No');
 
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://ai-custom-merchandise-platform-ey0zvsfs0.vercel.app',
+  methods: ['GET', 'POST'],
+}));
+
 app.use(express.json({limit: "50mb"}));
 
 app.use('/api/v1/dalle', dalleRoutes);
@@ -25,8 +29,9 @@ app.get("/", (req, res) => {
   res.status(200).send({message:"hello from DALL.E"});
 });
 
-app.listen(8080, () => {
-  console.log("Server is running on port 8080");
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
 
