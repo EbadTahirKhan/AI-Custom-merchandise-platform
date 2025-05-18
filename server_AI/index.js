@@ -12,8 +12,13 @@ console.log("Is HF API Key loaded?", process.env.HF_API_KEY ? 'Yes' : 'No');
 
 const app = express();
 app.use(cors({
-  origin: 'https://ai-custom-merchandise-platform-ey0zvsfs0.vercel.app',
-  methods: ['GET', 'POST'],
+  origin: [
+    'https://ai-custom-merchandise-platform-ey0zvsfs0.vercel.app',
+    'https://ai-custom-merchandise-platform.vercel.app',
+    'http://localhost:3000' // for local development
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }));
 
 app.use(express.json({limit: "50mb"}));
