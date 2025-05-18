@@ -11,12 +11,7 @@ console.log("Is HF API Key loaded?", process.env.HF_API_KEY ? 'Yes' : 'No');
 
 
 const app = express();
-app.use(cors({
-  origin: [
-    'https://ai-custom-merchandise-platform-ey0zvsfs0.vercel.app',
-    'http://localhost:5173'
-  ]
-}));
+app.use(cors());
 app.use(express.json({limit: "50mb"}));
 
 app.use('/api/v1/dalle', dalleRoutes);
